@@ -1,0 +1,80 @@
+0	"unknown"	"未詳"	0	0	0
+1	"Pre-Han"	"漢前"	-1100	-206	1
+2	"QinHan"	"秦漢"	-221	220	2
+3	"SanGuo"	"三國"	220	265	7
+4	"NanBei Chao"	"南北朝"	420	589	13
+5	"Sui"	"隋"	581	618	41
+6	"Tang"	"唐"	618	907	42
+7	"Five Dynasties"	"五代"	907	960	44
+8	"Later Shu (10 states)"	"後蜀"	933	965	52
+9	"Wu"	"吳"	904	937	77
+10	"Southern Tang (10 states)"	"南唐"	937	975	58
+11	"WuYue (10 states)"	"吳越"	907	978	53
+12	"Min (10 states)"	"閩國"	909	945	55
+13	"Southern Han (10 states)"	"南漢"	917	971	56
+14	"Koryo"	"高麗"	0	0	74
+15	"Song"	"宋"	960	1279	61
+16	"Liao"	"遼"	947	1115	60
+17	"Jin"	"金"	1115	1234	63
+18	"Yuan"	"元"	1234	1367	66
+19	"Ming"	"明"	1368	1644	68
+20	"Qing"	"清"	1644	1911	69
+21	"Republic of China"	"中華民國"	1912	3000	70
+22	"People's Republic of China"	"中華人民共和國"	1949	3000	71
+23	"Western Jin"	"西晉"	265	316	11
+24	"Chen"	"陳"	557	589	17
+25	"Eastern Han"	"東漢"	25	220	6
+26	"SanGuo Wei"	"三國魏"	220	265	8
+27	"Eastern Jin"	"東晉"	317	419	12
+28	"Song (Liu)"	"宋(劉)"	420	479	14
+29	"Western Han"	"西漢"	-206	9	4
+30	"Northern Wei"	"北魏"	386	534	18
+31	"Northern Zhou"	"北周"	557	581	22
+32	"Southern Qi"	"南齌"	479	502	15
+34	"Later Liang (5 dynasties)"	"後梁"	907	923	45
+35	"Northern Qi"	"北齊"	550	578	21
+36	"Wu (Yang: 10 states)"	"吳(楊)"	904	937	50
+37	"West Liang"	"西梁"	557	560	75
+38	"Chu (Ma:10 states)"	"楚(馬)"	907	951	54
+39	"Former Yan (16 states)"	"前燕"	337	370	28
+40	"Western Wei"	"西魏"	535	557	20
+41	"Eastern Wei"	"東魏"	534	550	19
+42	"SanGuo Wu"	"三國吳"	222	280	10
+43	"Qin"	"秦"	0	0	76
+44	"Southern Liang"	"南梁"	502	557	16
+45	"Later Qin (16 states)"	"後秦"	384	417	30
+46	"Xin (Wang Mang)"	"新"	9	25	5
+47	"Later Tang (5 dynasties)"	"後唐"	923	936	46
+48	"Later Jin (5 dynasties)"	"後晉"	936	947	47
+49	"Later Zhou (5 dynasties)"	"後周"	951	960	49
+50	"Southern Yan (16 states)"	"南燕"	398	410	36
+51	"Former Liang (16 states)"	"前涼"	317	376	26
+52	"Later Han (5 dynasties)"	"後漢"	947	951	48
+53	"SanGuo Shu"	"三國蜀"	221	263	9
+55	"Nanping (10 states)"	"南平"	924	963	57
+56	"Western Liang (16 states)"	"西涼"	400	421	37
+57	"Qi (Wei Qi)"	"偽齊"	1130	1137	64
+58	"Korea"	"高麗"	0	0	73
+59	"Qara-Khitay"	"西遼"	1132	1218	65
+60	"Northern Yan (16 states)"	"北燕"	407	436	39
+61	"Ying Qin"	"贏秦"	-221	-206	3
+62	"Northern Liang (16 states"	"北涼"	401	439	38
+63	"Later Yan (16 states)"	"後燕"	384	407	32
+64	"Later Zhao (16 states)"	"後趙"	319	351	27
+65	"Former Qin (16 states)"	"前秦"	350	394	29
+66	"Northern Han (10 states)"	"北漢"	951	979	59
+67	"Xinluo (Korea)"	"新羅"	0	0	72
+68	"East Liang (North. Dy)"	"東梁"	555	587	23
+69	"Former Zhao (16 states)"	"前趙"	304	329	24
+70	"Cheng Han (16 states)"	"成漢"	304	347	25
+71	"Xia (16 states)"	"夏"	407	431	40
+72	"Western Qin (16 states)"	"西秦"	385	431	33
+73	"Later Liang (16 states)"	"後涼"	386	403	34
+74	"Southern Liang (16 states)"	"南涼"	397	414	35
+75	"Former Shu (10 states)"	"前蜀"	903	925	51
+76	"Western Yan (16 states)"	"西燕"	384	394	31
+77	"Zhou (Wu Zetian)"	"周"	684	705	43
+78	"Western Xia"	"西夏"	1032	1227	62
+79	"Northern Yuan"	"北元"	1371	1387	67
+80	"Soutthern Ming"	"南明"	1644	1661	
+81	"Zheng (Wang Shichong)"	"鄭（王世充）"	619	621	
