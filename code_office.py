@@ -80,6 +80,35 @@ def code_data(data_list, office_dic):
     return output
 
 
+# 性能优化：生成code_data & 写入到txt
+# add xiujunhan 2023-08-22
+def code_data_and_write(file_name, data_list, office_dic):
+    output = []
+    file = open(file_name, 'w', encoding="utf-8")
+    for line in data_list:
+        # cbdb_office_id = "unknown"
+        office_id = line[0]
+        office_dy = line[1]
+        office_name = line[2]
+        if office_dy in office_dic:
+            for cbdb_office_item in office_dic[office_dy]:
+                code_status = ""
+                cbdb_office_item_name_chn = cbdb_office_item[4]
+                cbdb_office_item_name_id = cbdb_office_item[1]
+                if office_name == cbdb_office_item_name_chn:
+                    code_status = "exact"
+                elif cbdb_office_item_name_chn in office_name:
+                    code_status = "partial"
+                if code_status != "":
+                    cbdb_office_id = cbdb_office_item_name_id
+                    output_row = [office_id, office_name, office_dy, cbdb_office_id, cbdb_office_item_name_chn, code_status]
+                    output.append(output_row)
+                    file.write("\t".join(output_row) + "\n")
+                    break
+    file.close()
+    return output
+
+
 # 未來可以嘗試實現：
 # 1，帶上允許時間限制的條件；
 #
@@ -91,6 +120,10 @@ read_file_class = FileOperation()
 dy_dic = FileOperation.read_dy("DYNASTIES.txt")
 office_dic = FileOperation.read_office("OFFICE_CODES.txt", dy_dic)
 data_list = FileOperation.read_input("input.txt")
-data_list_coded = code_data(data_list, office_dic)
-FileOperation.write_data("output.txt", data_list_coded)
+# data_list_coded = code_data(data_list, office_dic)
+# FileOperation.write_data("output.txt", data_list_coded)
+
+# add xiujunhan 2023-08-22
+code_data_and_write("output2.txt", data_list, office_dic)
+
 print("done")
