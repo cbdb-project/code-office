@@ -21,9 +21,9 @@ class FileOperation:
             csv_reader = csv.reader(f, delimiter="\t")
             for row in csv_reader:
                 dy = dy_dic[row[2]]
-                if dy not in output_dic and len(row[4])>1:
+                if dy not in output_dic and len(row[4]) > 1:
                     output_dic[dy] = [row]
-                elif len(row[4])>1:
+                elif len(row[4]) > 1:
                     output_dic[dy].append(row)
                 else:
                     pass
@@ -37,7 +37,7 @@ class FileOperation:
         with open(file_name, "r", encoding="utf-8") as f:
             csv_reader = csv.reader(f, delimiter="\t")
             for row in csv_reader:
-                if len(row[2])>1:
+                if len(row[2]) > 1:
                     output.append(row)
         return output
 
@@ -48,6 +48,7 @@ class FileOperation:
             output += "\t".join(i) + "\n"
         with open(file_name, "w", encoding="utf-8") as f:
             f.write(output)
+
 
 def code_data(data_list, office_dic):
     output = []
@@ -65,7 +66,8 @@ def code_data(data_list, office_dic):
                 if office_name == cbdb_office_item_name_chn:
                     code_status = "exact"
                     cbdb_office_id = cbdb_office_item_name_id
-                    output.append([office_id, office_name, office_dy, cbdb_office_id, cbdb_office_item_name_chn, code_status])
+                    output.append(
+                        [office_id, office_name, office_dy, cbdb_office_id, cbdb_office_item_name_chn, code_status])
                     breaker = 1
                     break
         if office_dy in office_dic and breaker == 0:
@@ -75,7 +77,8 @@ def code_data(data_list, office_dic):
                 if cbdb_office_item_name_chn in office_name:
                     code_status = "partial"
                     cbdb_office_id = cbdb_office_item_name_id
-                    output.append([office_id, office_name, office_dy, cbdb_office_id, cbdb_office_item_name_chn, code_status])
+                    output.append(
+                        [office_id, office_name, office_dy, cbdb_office_id, cbdb_office_item_name_chn, code_status])
                     break
     return output
 
@@ -101,7 +104,8 @@ def code_data_and_write(file_name, data_list, office_dic):
                     code_status = "partial"
                 if code_status != "":
                     cbdb_office_id = cbdb_office_item_name_id
-                    output_row = [office_id, office_name, office_dy, cbdb_office_id, cbdb_office_item_name_chn, code_status]
+                    output_row = [office_id, office_name, office_dy, cbdb_office_id, cbdb_office_item_name_chn,
+                                  code_status]
                     output.append(output_row)
                     file.write("\t".join(output_row) + "\n")
                     break
