@@ -1,3 +1,11 @@
+"""
+给朝代的官名加官名id
+思路：
+1. 根据朝代表DYNASTIES.txt，生成dy_dic[朝代id]=朝代名
+2. 根据官名表OFFICE_CODES.txt、dy_dic，生成office_dic[朝代名]=官名列表
+3. 根据office_dic，将input.txt中的官名加上官名id、匹配类型，输出为output.txt
+"""
+
 import csv
 
 
