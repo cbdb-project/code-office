@@ -50,48 +50,6 @@ class FileOperation:
                     output.append(row)
         return output
 
-    @staticmethod
-    def write_data(file_name, data_list_coded):
-        output = ""
-        for i in data_list_coded:
-            output += "\t".join(i) + "\n"
-        with open(file_name, "w", encoding="utf-8") as f:
-            f.write(output)
-
-
-def code_data(data_list, office_dic):
-    output = []
-    for line in data_list:
-        breaker = 0
-        cbdb_office_id = "unknown"
-        office_id = line[0]
-        office_dy = line[1]
-        office_name = line[2]
-        code_status = ""
-        if office_dy in office_dic:
-            for cbdb_office_item in office_dic[office_dy]:
-                cbdb_office_item_name_chn = cbdb_office_item[4]
-                cbdb_office_item_name_id = cbdb_office_item[1]
-                if office_name == cbdb_office_item_name_chn:
-                    code_status = "exact"
-                    cbdb_office_id = cbdb_office_item_name_id
-                    output.append(
-                        [office_id, office_name, office_dy, cbdb_office_id, cbdb_office_item_name_chn, code_status])
-                    breaker = 1
-                    break
-        if office_dy in office_dic and breaker == 0:
-            for cbdb_office_item in office_dic[office_dy]:
-                cbdb_office_item_name_chn = cbdb_office_item[4]
-                cbdb_office_item_name_id = cbdb_office_item[1]
-                if cbdb_office_item_name_chn in office_name:
-                    code_status = "partial"
-                    cbdb_office_id = cbdb_office_item_name_id
-                    output.append(
-                        [office_id, office_name, office_dy, cbdb_office_id, cbdb_office_item_name_chn, code_status])
-                    break
-    return output
-
-
 # 性能优化：生成code_data & 写入到txt
 # add xiujunhan 2023-08-22
 def code_data_and_write(file_name, data_list, office_dic):
@@ -133,10 +91,8 @@ read_file_class = FileOperation()
 dy_dic = FileOperation.read_dy("DYNASTIES.txt")
 office_dic = FileOperation.read_office("OFFICE_CODES.txt", dy_dic)
 data_list = FileOperation.read_input("input.txt")
-# data_list_coded = code_data(data_list, office_dic)
-# FileOperation.write_data("output.txt", data_list_coded)
 
 # add xiujunhan 2023-08-22
-code_data_and_write("output2.txt", data_list, office_dic)
+code_data_and_write("output.txt", data_list, office_dic)
 
 print("done")
