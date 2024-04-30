@@ -1,3 +1,4 @@
+office_id	office_name	office_dy	cbdb_office_id	cbdb_office_name	match_type
 1	漢軍鑲黃旗副都統	清	84440	旗副都統	partial
 2	兵部右侍郎	清	80414	兵部右侍郎	exact
 3	盛京戶部侍郎	清	82541	戶部侍郎	partial

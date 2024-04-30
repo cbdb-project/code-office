@@ -7,6 +7,8 @@
 3. 官职匹配，加官职id：根据office_dic，将input.txt中的官职加上官职id、匹配类型，输出为output.txt
 """
 
+# pip install char-converter
+
 import csv
 
 
@@ -18,6 +20,8 @@ class FileOperation:
         with open(file_name, "r", encoding="utf-8") as f:
             csv_reader = csv.reader(f, delimiter="\t")
             for row in csv_reader:
+                if use_char_function:
+                    row = [converter.convert(i) for i in row]
                 output_dic[row[0]] = row[2]
         return output_dic
 
@@ -29,6 +33,8 @@ class FileOperation:
         with open(file_name, "r", encoding="utf-8") as f:
             csv_reader = csv.reader(f, delimiter="\t")
             for row in csv_reader:
+                if use_char_function:
+                    row = [converter.convert(i) for i in row]
                 dy = dy_dic[row[2]]
                 if dy not in output_dic and len(row[4]) > 1:
                     output_dic[dy] = [row]
@@ -37,7 +43,9 @@ class FileOperation:
                 else:
                     pass
         for dy, row in output_dic.items():
-            output_dic[dy] = sorted(output_dic[dy], key=lambda x: len(x[4]), reverse=True)
+            output_dic[dy] = sorted(
+                output_dic[dy], key=lambda x: len(x[4]), reverse=True
+            )
         return output_dic
 
     @staticmethod
@@ -46,15 +54,27 @@ class FileOperation:
         with open(file_name, "r", encoding="utf-8") as f:
             csv_reader = csv.reader(f, delimiter="\t")
             for row in csv_reader:
+                if use_char_function:
+                    row = [converter.convert(i) for i in row]
                 if len(row[2]) > 1:
                     output.append(row)
         return output
+
 
 # 性能优化：生成code_data & 写入到txt
 # add xiujunhan 2023-08-22
 def code_data_and_write(file_name, data_list, office_dic):
     output = []
-    file = open(file_name, 'w', encoding="utf-8")
+    file = open(file_name, "w", encoding="utf-8")
+    header = [
+        "office_id",
+        "office_name",
+        "office_dy",
+        "cbdb_office_id",
+        "cbdb_office_name",
+        "match_type",
+    ]
+    file.write("\t".join(header) + "\n")
     for line in data_list:
         # cbdb_office_id = "unknown"
         office_id = line[0]
@@ -71,8 +91,14 @@ def code_data_and_write(file_name, data_list, office_dic):
                     code_status = "partial"
                 if code_status != "":
                     cbdb_office_id = cbdb_office_item_name_id
-                    output_row = [office_id, office_name, office_dy, cbdb_office_id, cbdb_office_item_name_chn,
-                                  code_status]
+                    output_row = [
+                        office_id,
+                        office_name,
+                        office_dy,
+                        cbdb_office_id,
+                        cbdb_office_item_name_chn,
+                        code_status,
+                    ]
                     output.append(output_row)
                     file.write("\t".join(output_row) + "\n")
                     break
@@ -86,6 +112,12 @@ def code_data_and_write(file_name, data_list, office_dic):
 # 2，如果有多項匹配，優先選擇有坐標信息的。
 # （當前可以透過工程來實現這一點：把 ADDRESSES 按照 id 和 坐標（坐標由大到小）排序。坐標有值的排在前面
 
+use_char_function = False
+# use_char_function = True
+if use_char_function:
+    from char_converter import CharConverter
+
+    converter = CharConverter("v2s")
 
 read_file_class = FileOperation()
 dy_dic = FileOperation.read_dy("DYNASTIES.txt")
