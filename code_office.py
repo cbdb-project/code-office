@@ -11,6 +11,10 @@
 
 import csv
 
+office_altname_index = 6
+office_name_index = 4
+office_dy_index = 2
+
 
 class FileOperation:
     @staticmethod
@@ -35,16 +39,36 @@ class FileOperation:
             for row in csv_reader:
                 if use_char_function:
                     row = [converter.convert(i) for i in row]
-                dy = dy_dic[row[2]]
-                if dy not in output_dic and len(row[4]) > 1:
-                    output_dic[dy] = [row]
-                elif len(row[4]) > 1:
-                    output_dic[dy].append(row)
+                    # if ; or ； in row[office_altname_index], split it. The condition must be in one if
+                if len(row[office_altname_index]) > 1:
+                    if "；" in row[office_altname_index]:
+                        row[office_altname_index] = row[office_altname_index].replace(
+                            "；", ";"
+                        )
+                    if ";" in row[office_altname_index]:
+                        altname_list = row[office_altname_index].split(";")
+                        altname_list = [i.replace(" ", "") for i in altname_list]
+                    else:
+                        altname_list = [row[office_altname_index]]
+                    for altname in altname_list:
+                        new_row = row.copy()
+                        new_row[office_name_index] = altname
+                        dy = dy_dic[row[office_dy_index]]
+                        if dy not in output_dic:
+                            output_dic[dy] = [new_row]
+                        else:
+                            output_dic[dy].append(new_row)
                 else:
-                    pass
+                    dy = dy_dic[row[office_dy_index]]
+                    if dy not in output_dic and len(row[office_name_index]) > 1:
+                        output_dic[dy] = [row]
+                    elif len(row[office_name_index]) > 1:
+                        output_dic[dy].append(row)
+                    else:
+                        pass
         for dy, row in output_dic.items():
             output_dic[dy] = sorted(
-                output_dic[dy], key=lambda x: len(x[4]), reverse=True
+                output_dic[dy], key=lambda x: len(x[office_name_index]), reverse=True
             )
         return output_dic
 
@@ -56,7 +80,7 @@ class FileOperation:
             for row in csv_reader:
                 if use_char_function:
                     row = [converter.convert(i) for i in row]
-                if len(row[2]) > 1:
+                if len(row[office_dy_index]) > 1:
                     output.append(row)
         return output
 
