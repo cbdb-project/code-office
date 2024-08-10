@@ -58,14 +58,13 @@ class FileOperation:
                             output_dic[dy] = [new_row]
                         else:
                             output_dic[dy].append(new_row)
+                dy = dy_dic[row[office_dy_index]]
+                if dy not in output_dic and len(row[office_name_index]) > 1:
+                    output_dic[dy] = [row]
+                elif len(row[office_name_index]) > 1:
+                    output_dic[dy].append(row)
                 else:
-                    dy = dy_dic[row[office_dy_index]]
-                    if dy not in output_dic and len(row[office_name_index]) > 1:
-                        output_dic[dy] = [row]
-                    elif len(row[office_name_index]) > 1:
-                        output_dic[dy].append(row)
-                    else:
-                        pass
+                    pass
         for dy, row in output_dic.items():
             output_dic[dy] = sorted(
                 output_dic[dy], key=lambda x: len(x[office_name_index]), reverse=True
@@ -111,7 +110,7 @@ def code_data_and_write(file_name, data_list, office_dic):
                 cbdb_office_item_name_id = cbdb_office_item[1]
                 if office_name == cbdb_office_item_name_chn:
                     code_status = "exact"
-                elif cbdb_office_item_name_chn in office_name:
+                elif cbdb_office_item_name_chn in office_name and cbdb_office_item_name_chn != "":
                     code_status = "partial"
                 if code_status != "":
                     cbdb_office_id = cbdb_office_item_name_id
@@ -136,8 +135,8 @@ def code_data_and_write(file_name, data_list, office_dic):
 # 2，如果有多項匹配，優先選擇有坐標信息的。
 # （當前可以透過工程來實現這一點：把 ADDRESSES 按照 id 和 坐標（坐標由大到小）排序。坐標有值的排在前面
 
-use_char_function = False
-# use_char_function = True
+# use_char_function = False
+use_char_function = True
 if use_char_function:
     from char_converter import CharConverter
 
