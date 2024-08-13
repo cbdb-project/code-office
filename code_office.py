@@ -147,7 +147,7 @@ if use_char_function:
 read_file_class = FileOperation()
 dy_dic = FileOperation.read_dy("DYNASTIES.txt")
 office_dic = FileOperation.read_office("OFFICE_CODES.txt", dy_dic)
-data_list = FileOperation.read_input("input_small.txt")
+data_list = FileOperation.read_input("input.txt")
 
 # add xiujunhan 2023-08-22
 code_data_and_write("output.txt", data_list, office_dic)
