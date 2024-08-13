@@ -14,6 +14,7 @@ import csv
 office_altname_index = 5
 office_name_index = 3
 office_dy_index = 1
+office_id_index = 0
 input_dy_index = 1
 
 
@@ -108,7 +109,7 @@ def code_data_and_write(file_name, data_list, office_dic):
             for cbdb_office_item in office_dic[office_dy]:
                 code_status = ""
                 cbdb_office_item_name_chn = cbdb_office_item[office_name_index]
-                cbdb_office_item_name_id = cbdb_office_item[office_dy_index]
+                cbdb_office_item_name_id = cbdb_office_item[office_id_index]
                 if office_name == cbdb_office_item_name_chn:
                     code_status = "exact"
                 elif cbdb_office_item_name_chn in office_name and cbdb_office_item_name_chn != "":
