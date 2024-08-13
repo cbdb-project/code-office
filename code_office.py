@@ -11,9 +11,10 @@
 
 import csv
 
-office_altname_index = 6
-office_name_index = 4
-office_dy_index = 2
+office_altname_index = 5
+office_name_index = 3
+office_dy_index = 1
+input_dy_index = 1
 
 
 class FileOperation:
@@ -79,7 +80,7 @@ class FileOperation:
             for row in csv_reader:
                 if use_char_function:
                     row = [converter.convert(i) for i in row]
-                if len(row[office_dy_index]) > 1:
+                if len(row[input_dy_index]) > 0:
                     output.append(row)
         return output
 
@@ -101,13 +102,13 @@ def code_data_and_write(file_name, data_list, office_dic):
     for line in data_list:
         # cbdb_office_id = "unknown"
         office_id = line[0]
-        office_dy = line[1]
+        office_dy = line[input_dy_index]
         office_name = line[2]
         if office_dy in office_dic:
             for cbdb_office_item in office_dic[office_dy]:
                 code_status = ""
-                cbdb_office_item_name_chn = cbdb_office_item[4]
-                cbdb_office_item_name_id = cbdb_office_item[1]
+                cbdb_office_item_name_chn = cbdb_office_item[office_name_index]
+                cbdb_office_item_name_id = cbdb_office_item[office_dy_index]
                 if office_name == cbdb_office_item_name_chn:
                     code_status = "exact"
                 elif cbdb_office_item_name_chn in office_name and cbdb_office_item_name_chn != "":
@@ -145,7 +146,7 @@ if use_char_function:
 read_file_class = FileOperation()
 dy_dic = FileOperation.read_dy("DYNASTIES.txt")
 office_dic = FileOperation.read_office("OFFICE_CODES.txt", dy_dic)
-data_list = FileOperation.read_input("input.txt")
+data_list = FileOperation.read_input("input_small.txt")
 
 # add xiujunhan 2023-08-22
 code_data_and_write("output.txt", data_list, office_dic)
