@@ -127,6 +127,11 @@ def code_data_and_write(file_name, data_list, office_dic):
                     output.append(output_row)
                     file.write("\t".join(output_row) + "\n")
                     break
+            # write unknown
+            if code_status == "":
+                output_row = [office_id, office_name, office_dy, "unknown", "unknown", "unknown"]
+                output.append(output_row)
+                file.write("\t".join(output_row) + "\n")
     file.close()
     return output
 
